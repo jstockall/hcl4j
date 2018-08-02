@@ -26,7 +26,7 @@ import java.io.*;
 
 %%
 
-%class HCLLexer
+%public %class HCLLexer
 %unicode
 %line
 %column
