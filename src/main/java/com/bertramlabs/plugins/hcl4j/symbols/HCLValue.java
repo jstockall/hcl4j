@@ -29,4 +29,9 @@ public class HCLValue {
 		this.type = type;
 		this.value = value;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("HCLValue [type=%s, value=%s]", type, value);
+    }
 }

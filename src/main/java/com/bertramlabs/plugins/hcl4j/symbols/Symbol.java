@@ -15,7 +15,7 @@
  */
 package com.bertramlabs.plugins.hcl4j.symbols;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface Symbol {
 	public String getSymbolName();
@@ -32,10 +32,10 @@ public interface Symbol {
 	HCLValue getValue();
 	void setValue(HCLValue value);
 
-	List<Symbol> getAttributes();
+	Collection<Symbol> getAttributes();
 	void appendAttribute(Symbol symbol);
 
-	List<Symbol> getChildren();
+	Collection<Symbol> getChildren();
 	void appendChild(Symbol symbol);
 
 	Symbol getParent();

@@ -15,8 +15,9 @@
  */
 package com.bertramlabs.plugins.hcl4j.symbols;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public abstract class GenericSymbol implements Symbol {
 	private Integer line;
@@ -27,8 +28,8 @@ public abstract class GenericSymbol implements Symbol {
 	private String name;
 	private HCLValue value;
 
-	private List<Symbol> children = new ArrayList<Symbol>();
-	private List<Symbol> attributes = new ArrayList<Symbol>();
+	private Set<Symbol> children = new LinkedHashSet<Symbol>();
+	private Set<Symbol> attributes = new LinkedHashSet<Symbol>();
 	private Symbol parent;
 
 	public String getName() {
@@ -68,11 +69,11 @@ public abstract class GenericSymbol implements Symbol {
 		return position;
 	}
 
-	public List<Symbol> getChildren() {
+	public Collection<Symbol> getChildren() {
 		return children;
 	}
 
-	public List<Symbol> getAttributes() {
+	public Collection<Symbol> getAttributes() {
 		return attributes;
 	}
 
@@ -103,4 +104,11 @@ public abstract class GenericSymbol implements Symbol {
 		this.column = column;
 		this.position = position;
 	}
+
+    @Override
+    public String toString() {
+        return String.format(
+                "%s [line=%s, column=%s, position=%s, length=%s, name=%s, value=%s, children=%s, attributes=%s]",
+                getSymbolName(), line, column, position, length, name, value, children, attributes);
+    }
 }
