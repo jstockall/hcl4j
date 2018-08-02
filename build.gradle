@@ -13,6 +13,7 @@ buildscript {
 
 plugins {
     id "com.jfrog.bintray" version "1.2"
+    id 'ivy-publish'
 }
 
 apply plugin: 'java'
@@ -44,6 +45,18 @@ dependencies {
 
 
 publishing {
+    repositories {
+        ivy {
+            url = "http://artifactory.embotics.com:8081/artifactory/libs-release-local"
+			authentication {
+	            basic(BasicAuthentication)
+	        }            
+            credentials(PasswordCredentials) {
+	            username "publish"
+	            password "Secret1"
+	        }
+        }
+    }
     publications {
         maven(MavenPublication) {
             artifactId 'hcl4j'
@@ -78,6 +91,15 @@ publishing {
             artifact sourcesJar
             artifact javadocJar
         }
+		ivy(IvyPublication) {
+            organisation = 'com.embotics'
+            descriptor.status = 'milestone'
+            descriptor.branch = 'master'
+
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+        }        
     }
 }
 
