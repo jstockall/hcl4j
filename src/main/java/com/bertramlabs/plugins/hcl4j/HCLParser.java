@@ -72,6 +72,7 @@ public class HCLParser {
 	 * @return Mapped result of object tree coming from HCL (values of keys can be variable).
 	 * @throws HCLParserException Any type of parsing errors are returned as this exception if the syntax is invalid.
 	 * @throws IOException In the event the reader is unable to pull from the input source this exception is thrown.
+	 * @throws UnsupportedEncodingException If UTF-8 is not supported
 	 */
 	public Map<String,Object> parse(File input) throws HCLParserException, IOException, UnsupportedEncodingException {
 		return parse(input,"UTF-8");
