@@ -92,7 +92,7 @@ public class HCLParser {
      *             In the event the reader is unable to pull from the input
      *             source this exception is thrown.
      */
-    public HCLObject parse(File input) throws HCLParserException, IOException, UnsupportedEncodingException {
+    public HCLObject parse(File input) throws HCLParserException, IOException {
         return parse(input, "UTF-8");
     }
 
