@@ -91,6 +91,9 @@ publishing {
             artifact sourcesJar
             artifact javadocJar
         }
+        
+        // this published to com.embotics/hcl4j/$revision for some reason
+        // it needs to be manually moved in Artifactory
 		ivy(IvyPublication) {
             organisation = 'com.embotics'
             descriptor.status = 'milestone'
