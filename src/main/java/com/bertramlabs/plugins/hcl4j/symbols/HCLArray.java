@@ -42,7 +42,8 @@ public class HCLArray extends HCLValue {
 		this.value = new ArrayList<HCLValue>();
 	}
 
-	public void add(HCLValue val) {
+	@SuppressWarnings("unchecked")
+    public void add(HCLValue val) {
 		((List<HCLValue>)value).add(val);
 	}
 }

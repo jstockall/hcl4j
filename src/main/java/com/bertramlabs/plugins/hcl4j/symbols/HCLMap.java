@@ -42,7 +42,8 @@ public class HCLMap extends HCLValue {
 		this.value = new LinkedHashMap<String,HCLValue>();
 	}
 
-	public void add(String key, HCLValue val) {
+	@SuppressWarnings("unchecked")
+    public void add(String key, HCLValue val) {
 		((Map<String,HCLValue>)value).put(key,val);
 	}
 }
