@@ -30,7 +30,8 @@ dependencies {
 
 Using Ivy one can include the hcl4j dependency like so:
 
-```<dependency org="com.embotics" name="hcl4j" rev="0.1.9">
+```
+<dependency org="com.embotics" name="hcl4j" rev="0.1.9">
     <artifact name="hcl4j" ext="jar"/>
 </dependency>
 ```
