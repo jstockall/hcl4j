@@ -37,8 +37,9 @@ resource "lbs" {
 }
 '''
 		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.containsKey('variables') == true
@@ -152,8 +153,9 @@ resource "vsphere_virtual_machine" "tm-terraform-2" {
 }
 '''
 		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.containsKey('variable') == true
@@ -172,8 +174,9 @@ test = {"list": [1,2,3,[4,5,6]], name: "David Estes", info: { firstName: "David"
 
 '''
 		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.containsKey('variable') == true
@@ -195,8 +198,9 @@ escapedInterpolation = "$${var.firstName}"
 
 '''
 		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.containsKey('variable') == true
@@ -219,8 +223,9 @@ EOL
 
 '''
 		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.containsKey('variable') == true
@@ -238,9 +243,10 @@ Don't you?
 		  nohup busybox httpd -f -p 8080 &
 		  EOF
 		'''
-		 HCLParser parser = new HCLParser();
+		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.containsKey('user_data') == true
@@ -254,8 +260,9 @@ Don't you?
 variable {}
 '''
 		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.containsKey('variable') == true
@@ -269,8 +276,9 @@ variable {}
 foo = "Hello there"
 '''
 		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.foo == "Hello there"
@@ -290,8 +298,9 @@ variable "images" {
 }
 '''
 		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.variable.images.default['us-east-1'] == "image-1234"
@@ -374,8 +383,9 @@ resource "oci_core_instance" "compute_instances" {
 }
 '''
 		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.variable.instance_image_ocid.type == 'map'
@@ -391,8 +401,9 @@ variable "credentials" {
 }
 '''
 		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.variable.credentials.password == 'Pa$sword'
@@ -420,8 +431,9 @@ variable "credentials" {
  }
 '''
 		HCLParser parser = new HCLParser();
+		HCL2Map export = new HCL2Map();
 		when:
-		def results  = parser.parse(hcl)
+		def results = export.toMap(parser.parse(hcl).getRootBlocks());
 		println JsonOutput.prettyPrint(JsonOutput.toJson(results));
 		then:
 		results.available_stack_regex['python2.7'] == '^64bit Amazon Linux (.*) Python 2.7$'
