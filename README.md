@@ -3,6 +3,11 @@ HCL4j
 
 HCL4j is a Parser for the Hashicorp Configuration Language on the JVM. This provides a mechanism for converting HCL syntax into an Object Map that can be used for further inspection. 
 
+Three repositories
+* orgin master https://github.com/bertramdev/hcl4j (original)
+* orgin upstream https://github.com/jstockall/hcl4j (forked so it can be imported to GitLab internal)
+* internal master http://svrrepo.embotics.com/development/hcl4j (active development)
+
 Features:
 
 * Support for Syntax parsing
